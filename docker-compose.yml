@@ -1,0 +1,20 @@
+version: '3.7'
+
+services:
+  server:
+    build:
+      context: .
+      dockerfile: server.Dockerfile
+    ports:
+      - '5050:5050'
+    image: 3d0c/wow/server:latest
+    restart: 'no'
+
+  client:
+    build:
+      context: .
+      dockerfile: client.Dockerfile
+    image: 3d0c/wow/client:latest
+    restart: 'no'
+    depends_on:
+      - server
